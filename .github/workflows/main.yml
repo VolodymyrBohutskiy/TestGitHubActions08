@@ -7,7 +7,7 @@ jobs:
   release_pull_request:
     strategy:
       matrix:
-        git_branches: [main]
+        git_branches: [main,main-nl,main-es]
     runs-on: ubuntu-latest
     name: release_pull_request
     steps:
