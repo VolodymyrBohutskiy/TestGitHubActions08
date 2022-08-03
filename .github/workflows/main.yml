@@ -1,0 +1,23 @@
+name: Auto Pull Request
+on:
+  push:
+    branches:
+      - feature-01
+jobs:
+  release_pull_request:
+    strategy:
+      matrix:
+        git_branches: [main]
+    runs-on: ubuntu-latest
+    name: release_pull_request
+    steps:
+    - name: checkout
+      uses: actions/checkout@v1
+    - name: Create PR to branch
+      uses: gorillio/github-action-cherry-pick@master
+      with:
+        pr_branch: ${{ matrix.git_branches }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITBOT_EMAIL: 'bogutskiy.v@gmail.com'
+        DRY_RUN: false
